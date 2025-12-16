@@ -44,6 +44,8 @@ form.addEventListener("submit", function (e) {
   const email = document.getElementById("email").value.trim();
   const mobile = document.getElementById("mobile").value.trim();
   const message = document.getElementById("textarea").value.trim();
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 
   if (!lastName || !firstName || !email || !message) {
     alert("Veuillez remplir tous les champs obligatoires !");
@@ -56,5 +58,5 @@ form.addEventListener("submit", function (e) {
 
   alert("Formulaire complété avec succés !")
   form.reset ();
+
 });
-getElementById
