@@ -1,5 +1,9 @@
+
+const planetes = ["mercury","venus","earth","mars","jupiter","saturn","uranus","neptune"];
+
+
 async function afficherPlanetes() {
-  const apiUrl = "https://api.api-ninjas.com/v1/planets";
+  const apiUrl = "https://api.api-ninjas.com/v1/planets?name=earth";
   const apiKey = "AR8OsTVJdP3da+XsLsRQ1A==dS0QmDvtepXP5xO2";
 
 try {
@@ -15,7 +19,6 @@ try {
   // Dans le but de l'afficher dans le HTML
 
   const container = document.getElementById("planet-info");
-  container.innerHTML = "";
 
   data.forEach(planete => {
     const p = document.createElement("p");
@@ -29,11 +32,6 @@ try {
 }
 }
 afficherPlanetes();
-
-
-
-
-
 
 // FORMULAIRE
 
