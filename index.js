@@ -42,23 +42,23 @@ form.addEventListener("submit", function (e) {
   }
 
   if (!isValid) {
-    alert("Veuillez remplir tous les champs obligatoires !");
+    showError("Veuillez remplir tous les champs obligatoires !");
     return;
   }
 
   if (!emailPattern.test(email)) {
     document.getElementById("email").classList.add("error");
-    alert("Veuillez enter une adresse mail valide");
+    showError("Veuillez enter une adresse mail valide");
     return;
   }
 
   if (mobile && !mobilePattern.test(mobile)) {
     document.getElementById("mobile").classList.add("error");
-    alert("Votre numéro de téléphone doit contenir des chiffres (1,2,3...)");
+    showError("Votre numéro de téléphone doit contenir des chiffres (1,2,3...)");
     return;
   }
 
-  alert("Formulaire complété avec succés !");
+  showError("Formulaire complété avec succés !");
   form.reset();
 });
 
@@ -71,6 +71,15 @@ inputs.forEach((input) => {
   });
 });
 
-// ***** Formulaire FIN *****
+function showError(msg) {
+  const formMessage = document.getElementById("form-message");
+  const formText = document.getElementById("formText");
 
+  formText.textContent = msg;
+  formMessage.style.display = "flex";
+
+  setTimeout(() => {
+    formMessage.style.display = "none";
+  }, 3000);
+}
 
