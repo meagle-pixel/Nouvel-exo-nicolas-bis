@@ -411,6 +411,11 @@ nav {
     background: none;
     border-bottom: 2px solid white;
     color: white;
+    transition: border-bottom-color 0.3s ease;
+}
+
+.container_contact form input.error {
+    border-bottom: 2px solid red;
 }
 
 .container_contact form input::placeholder {
