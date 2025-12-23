@@ -1,0 +1,54 @@
+{
+  "planetes": [
+    {
+      "id": 1,
+      "nom": "Mercure",
+      "type": "Tellurique",
+      "diametre_km": 4879,
+      "image": "/images/mercuree.jpg"
+    },
+    {
+      "id": 2,
+      "nom": "Vénus",
+      "type": "Tellurique",
+      "diametre_km": 12104,
+      "image": "/images/venuss.jpg"
+    },
+    {
+      "id": 3,
+      "nom": "Terre",
+      "type": "Tellurique",
+      "diametre_km": 12742,
+      "image": "/images/terrre.jpg"  
+    },
+    {
+      "id": 4,
+      "nom": "Mars",
+      "type": "Tellurique",
+      "diametre_km": 6779
+    },
+    {
+      "id": 5,
+      "nom": "Jupiter",
+      "type": "Géante gazeuse",
+      "diametre_km": 139820
+    },
+    {
+      "id": 6,
+      "nom": "Saturne",
+      "type": "Géante gazeuse",
+      "diametre_km": 116460
+    },
+    {
+      "id": 7,
+      "nom": "Uranus",
+      "type": "Géante de glace",
+      "diametre_km": 50724
+    },
+    {
+      "id": 8,
+      "nom": "Neptune",
+      "type": "Géante de glace",
+      "diametre_km": 49244
+    }
+  ]}
