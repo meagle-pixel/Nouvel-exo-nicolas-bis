@@ -49,7 +49,7 @@ if (form) {
     }
 
     if (!emailPattern.test(email)) {
-      document.getElementById("email").classList.add("error");
+      -document.getElementById("email").classList.add("error");
       showErrorOrSuccess("Veuillez entrer une adresse mail valide");
       return;
     }
@@ -83,9 +83,7 @@ function showErrorOrSuccess(msg, type = "error") {
 
   // Vérifiez que ces éléments existent aussi
   if (!formMessage || !formText || !formIcon) return;
-
   formText.textContent = msg;
-
   formMessage.classList.remove("error", "success");
   formMessage.classList.add(type);
 
@@ -108,33 +106,44 @@ function showErrorOrSuccess(msg, type = "error") {
 const url = "http://127.0.0.1:5500/js/data/planetes.json";
 
 const containerS = document.getElementById("planetes-system");
-const info = document.getElementById("info-planete");
 
-async function afficherPlanetes() {
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    console.log(data);
-    const planete = data.planetes;
+if (containerS) {
+  async function afficherPlanetes() {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
 
-    for (let i = 0; i < planete.length; i++) {
-      console.log(i);
+      const planete = data.planetes;
 
-      const article = document.createElement("article");
-      article.classList = "art";
-      article.innerHTML = `
-      ${planete[i].nom}
-      img src="${data[i].img}
+      planete.forEach((p) => {
+        const article = document.createElement("article");
+        article.classList.add("art");
+
+        article.innerHTML = `
+          <div class="planet-img">
+            <img src="${p.img}" alt="${p.img}">
+          </div>
+          <h3>${p.nom}</h3>
+        `;
+        containerS.appendChild(article);
+
+        const info = document.getElementById("info-planete");
+        const images = document.querySelectorAll(".planet-img img");
+
+        images.forEach((img) => {
+          img.addEventListener("click", (e) => {
+            info.innerHTML = `
+      <h2>${p.nom}</h2>
 
       `;
-      containerS.appendChild(article);
+          });
+        });
+      });
+    } catch (error) {
+      console.error("Une erreur s'est produite : ", error);
     }
-  } catch (error) {
-    console.error("Une erreur s'est produite : ", error);
   }
+  afficherPlanetes();
+
+  // *** Mon MODAL AU CLIQUE SUR UNE IMAGE ***
 }
-
-afficherPlanetes();
-
-const article = document.querySelector("article");
-console.log(article);

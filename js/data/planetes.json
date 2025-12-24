@@ -5,50 +5,55 @@
       "nom": "Mercure",
       "type": "Tellurique",
       "diametre_km": 4879,
-      "image": "/images/mercuree.jpg"
+      "img": "/images/mercuree.png"
     },
     {
       "id": 2,
       "nom": "Vénus",
       "type": "Tellurique",
       "diametre_km": 12104,
-      "image": "/images/venuss.jpg"
+      "img": "/images/venuss.jpg"
     },
     {
       "id": 3,
       "nom": "Terre",
       "type": "Tellurique",
       "diametre_km": 12742,
-      "image": "/images/terrre.jpg"  
+      "img": "/images/terrre.jpg"  
     },
     {
       "id": 4,
       "nom": "Mars",
       "type": "Tellurique",
-      "diametre_km": 6779
+      "diametre_km": 6779,
+      "img": "/images/marss.jpg" 
     },
     {
       "id": 5,
       "nom": "Jupiter",
       "type": "Géante gazeuse",
-      "diametre_km": 139820
+      "diametre_km": 139820,
+      "img": "/images/jupiteer.jpg" 
     },
     {
       "id": 6,
       "nom": "Saturne",
       "type": "Géante gazeuse",
-      "diametre_km": 116460
+      "diametre_km": 116460,
+      "img": "/images/saturnee.jpg" 
     },
     {
       "id": 7,
       "nom": "Uranus",
       "type": "Géante de glace",
-      "diametre_km": 50724
+      "diametre_km": 50724,
+      "img": "/images/uranuss.jpg" 
     },
     {
       "id": 8,
       "nom": "Neptune",
       "type": "Géante de glace",
-      "diametre_km": 49244
+      "diametre_km": 49244,
+      "img": "/images/neptunee.jpg" 
     }
   ]}
