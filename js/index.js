@@ -49,7 +49,7 @@ if (form) {
     }
 
     if (!emailPattern.test(email)) {
-      -document.getElementById("email").classList.add("error");
+      document.getElementById("email").classList.add("error");
       showErrorOrSuccess("Veuillez entrer une adresse mail valide");
       return;
     }
@@ -104,8 +104,8 @@ function showErrorOrSuccess(msg, type = "error") {
 // page 4 Systeme solaire
 
 const url = "http://127.0.0.1:5500/js/data/planetes.json";
-
 const containerS = document.getElementById("planetes-system");
+const info = document.getElementById("info-planete");
 
 if (containerS) {
   async function afficherPlanetes() {
@@ -113,37 +113,45 @@ if (containerS) {
       const response = await fetch(url);
       const data = await response.json();
 
-      const planete = data.planetes;
-
-      planete.forEach((p) => {
+      data.planetes.forEach((p) => {
         const article = document.createElement("article");
         article.classList.add("art");
 
         article.innerHTML = `
           <div class="planet-img">
-            <img src="${p.img}" alt="${p.img}">
+            <img src="${p.img}" alt="${p.nom}">
           </div>
-          <h3>${p.nom}</h3>
         `;
-        containerS.appendChild(article);
 
-        const info = document.getElementById("info-planete");
-        const images = document.querySelectorAll(".planet-img img");
+        // 🔹 CLIC SUR LA PLANÈTE
+        article.addEventListener("click", () => {
+          info.innerHTML = `
+           <button id="close-info" style="position: absolute; top: 10px; right: 15px; background: none; border: none; color: #ff9500; font-size: 30px; cursor: pointer; font-weight: bold;">&times;</button>
+            <h2>${p.nom}</h2>
+            <p><strong>Type :</strong> ${p.type}</p>
+            <p>Diamètre : ${p.diametre_km.toLocaleString("fr-FR")} km</p>
+            <p>Masse : ${p.masse_kg} km</p>
+            <p>Distance Soleil : ${p.distance_au_soleil_km.toLocaleString(
+              "fr-FR"
+            )} km</p>
+            <p>Lune(s) : ${p.lunes}</p>
+          `;
 
-        images.forEach((img) => {
-          img.addEventListener("click", (e) => {
-            info.innerHTML = `
-      <h2>${p.nom}</h2>
+            info.addEventListener("click", (e) => {
+              if (e.target.id === "close-info") {
+                info.innerHTML = "";
+                document.querySelectorAll(".art").forEach(a => a.classList.remove("selected"));
+              }
+            })
 
-      `;
-          });
         });
+
+        containerS.appendChild(article);
       });
     } catch (error) {
-      console.error("Une erreur s'est produite : ", error);
+      console.error("Erreur lors du chargement :", error);
     }
   }
-  afficherPlanetes();
 
-  // *** Mon MODAL AU CLIQUE SUR UNE IMAGE ***
+  afficherPlanetes();
 }

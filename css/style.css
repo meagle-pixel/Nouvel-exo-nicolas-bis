@@ -1,4 +1,3 @@
-
 * {
     box-sizing: border-box;
 }
@@ -59,7 +58,7 @@ nav {
     color: rgb(100, 180, 230);
 }
 
-           /* MAIN */
+/* MAIN */
 
 /* TITRE + BARRE DE RECHERCHE */
 
@@ -70,7 +69,7 @@ section.tittle_search {
 }
 
 .tittle h1 {
-    font-family:Georgia, 'Times New Roman', Times, serif ;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     color: rgb(179, 67, 2);
     text-align: center;
 }
@@ -143,7 +142,8 @@ section.container {
     width: 100%;
 }
 
-.art_one, .art_two {
+.art_one,
+.art_two {
     /* border: solid 3px rgb(226, 226, 235); */
     border-radius: 15px;
     box-shadow: 1px 0px 20px 16px rgba(10, 4, 0, 0.425);
@@ -163,7 +163,7 @@ section.container {
 .art_one:hover,
 .art_two:hover {
     transform: translateY(-5px);
-    box-shadow:  1px 5px 20px 20px rgb(179, 67, 2);
+    box-shadow: 1px 5px 20px 20px rgb(179, 67, 2);
 }
 
 .plus {
@@ -294,12 +294,15 @@ h1.h1 {
     text-align: center;
 }
 
-.int{
+.int {
     border-left: solid 7px rgb(179, 67, 2);
     padding-left: 5px;
 }
 
-.text, h2, .intro, h2 {
+.text,
+h2,
+.intro,
+h2 {
     padding: 5px;
 }
 
@@ -423,8 +426,7 @@ nav {
     color: white;
 }
 
-.container_contact form #lastName
-.container_contact form #mobile {
+.container_contact form #lastName .container_contact form #mobile {
     margin-left: 20px;
 }
 
@@ -474,25 +476,25 @@ nav {
 
 
 #form-message {
-  position: fixed;       
-  bottom: 20px;          
-  left: 50%;             
-  transform: translateX(-50%);
-  font-size: 18px;
-  padding: 10px 20px;
-  border-radius: 15px;
-  display: none;  
-  gap: 15px;
-  z-index: 9999; 
-  color: white;   
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    display: none;
+    gap: 15px;
+    z-index: 9999;
+    color: white;
 }
 
 #form-message.error {
-  background-color: rgba(255,0,0,0.9);
+    background-color: rgba(255, 0, 0, 0.9);
 }
 
 #form-message.success {
-  background-color: #2ecc71;
+    background-color: #2ecc71;
 }
 
 
@@ -508,59 +510,86 @@ footer.footer-contact {
 }
 
 
-/* Page 4 - Système solaire */
+
+
+
+
+
+/* PAGE 4 - Système solaire */
 
 body.body-solaire {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* HEADER PAGE SYSTEME SOLAIRE */
-
 header.header-solaire {
-    background: rgba(7, 0, 0, 0.84);
+    background: #5a3102d6;
 }
 
 
-#planetes-system {
-  display: flex;
-  gap: 20px;
-  margin: 20px 0;
-  flex-wrap: wrap;
+body.body-solaire {
+   background: black;
 }
 
-
 #planetes-system {
-  
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
 }
 
 .art {
-    border: 1px solid black;
+    padding: 20px;
+    width: fit-content;
+    /* permet à un élément de prendre uniquement la place nécessaire à son contenu. */
 }
 
 .art img {
-  width: 100px;
-  cursor: pointer;
-  border: 2px solid transparent;
-  border-radius: 50%;
-  transition: border 0.2s;
-  aspect-ratio: 1/1; 
-  object-fit: contain;
-  background-color: black;
-  /* transform:scale(1.2); */ 
+    width: 200px;
+    cursor: pointer;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    /* sert à forcer un élément à rester parfaitement carré.*/
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .art img:hover {
-  border: 2px solid #00f;
+    transform: scale(1.2);
 }
 
+.planet-img {
+    border-radius: 50%;
+    overflow: hidden;
+}
 
 #info-planete {
-  margin-top: 20px;
-  font-size: 1.1em;
+  position: fixed;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centré à l'écran */
+  width: 90%;
+  max-width: 600px;
+  background-color: rgba(0, 0, 0, 0.9); /* Plus opaque pour mieux lire */
+  color: #ff9500;
+  padding: 20px 30px;
+  border-radius: 10px;
+  font-size: 18px;
+  box-shadow: 0 0 50px rgba(255, 149, 0, 0.5);
+}
+
+#info-planete:empty {
+  display: none; /* Masqué si vide */
+}
+
+article.art {
+    text-align: center;
 }
 
 
+#h1_solaire {
+    text-align: center;
+    color: white;
+}
 
 
 
@@ -575,48 +604,49 @@ header.header-solaire {
 
 /* Querries Page 1 */
 
-@media screen and (max-width:780px){
-    main.main-accueil{
-    width: 100%;
-    margin: 0;
-    padding: 10px;
-    max-width: 100%;
-}
+@media screen and (max-width:780px) {
+    main.main-accueil {
+        width: 100%;
+        margin: 0;
+        padding: 10px;
+        max-width: 100%;
+    }
 
-.earth_mars {
-    flex-direction: column;
-}
+    .earth_mars {
+        flex-direction: column;
+    }
 }
 
 /* Querries Page 2  */
 @media screen and (max-width:780px) {
     main.main-page {
-    margin: 0;
-    width: 100%;
-    max-width: 100%;
-    
-}
+        margin: 0;
+        width: 100%;
+        max-width: 100%;
+
+    }
 }
 
 /* Querries Page 3 */
 
-@media screen and (max-width:780px){
-    main.main-contact{
-    margin: 0;
-    padding: 20px;
-    width: 100%;
-    max-width: 100%;
-}
+@media screen and (max-width:780px) {
+    main.main-contact {
+        margin: 0;
+        padding: 20px;
+        width: 100%;
+        max-width: 100%;
+    }
 
-header.contact {
-    min-width: 100%;
-}
+    header.contact {
+        min-width: 100%;
+    }
 
-.container_contact {
-    min-height: 10vh;
-}
+    .container_contact {
+        min-height: 10vh;
+    }
 
-.container_contact form, #textarea {
-    min-width: 100%;
-}
+    .container_contact form,
+    #textarea {
+        min-width: 100%;
+    }
 }
