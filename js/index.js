@@ -101,74 +101,91 @@ function showErrorOrSuccess(msg, type = "error") {
   }, 3000);
 }
 
-// page 4 Systeme solaire
+// PAGE 4 SYSTEME SOLAIRE
 
 const url = "http://127.0.0.1:5500/js/data/planetes.json";
 const containerS = document.getElementById("planetes-system");
 const info = document.getElementById("info-planete");
 const filtre = document.getElementById("filtre-planetes");
-let planetesData = [];
-
-// filtre.addEventListener("change", (e)=> {
-//   let filtrerValue = filtre.value;
-
-//   let filtrerplanet = planetesData.filter((p) => {
-//     if (filtrerValue === "all") return true;
-//     if (filtrerValue === "tellurique") return p.type.toLowerCase().includes("tellurique");
-//     if (filtrerValue === "gazeuse") return p.type.toLowerCase().includes("gazeuse");
-//     if (filtrerValue === "glace") return p.type.toLowerCase().includes("glace");
-//     if (filtrerValue === "lunes") return p.lunes > 0;
-//   });
-
-//   containerS.innerHTML = "";  // La je vide le conteneur
+let planetesData = []; //  Variable globale qui va stocker TOUTES les planètes (vide au début, elle sera remplie après le fetch)
 
 
+if (containerS && filtre) {
+  //  Fonction qui prend en paramètre une liste de planètes à afficher (peut être toutes les planètes ou seulement les filtrées)
+  function renderPlanetes(planetesAAfficher) {
+    containerS.innerHTML = "";
 
-if (containerS) {
-  async function afficherPlanetes() {
+    planetesAAfficher.forEach((p) => {
+      const article = document.createElement("article");
+      article.classList.add("art");
+      article.innerHTML = `
+      <div class="planet-img">
+        <img src="${p.img}" alt="${p.nom}">
+      </div>
+    `;
+
+      // Gestion du clic pour les détails
+      article.addEventListener("click", () => {
+        info.innerHTML = `
+        <button id="close-info" style="position: absolute; top: 10px; right: 15px; background: none; border: none; color: #ff9500; font-size: 30px; cursor: pointer; font-weight: bold;">&times;</button>
+        <h2>${p.nom}</h2>
+        <p><strong>Type :</strong> ${p.type}</p>
+        <p>Diamètre : ${p.diametre_km.toLocaleString("fr-FR")} km</p>
+        <p>Masse : ${p.masse_kg} kg</p>
+        <p>Distance Soleil : ${p.distance_au_soleil_km.toLocaleString(
+          "fr-FR"
+        )} km</p>
+        <p>Lune(s) : ${p.lunes}</p>
+      `;
+
+        document.getElementById("close-info").addEventListener("click", () => {
+          info.innerHTML = "";
+        });
+      });
+
+      containerS.appendChild(article);
+    });
+  }
+
+  // GESTION DU FILTRE
+  filtre.addEventListener("change", (e) => {
+    const valeur = e.target.value;
+    let filteredList = [];
+
+    switch (valeur) {
+      case "all":
+        filteredList = planetesData;
+        break;
+      case "tellurique":
+        filteredList = planetesData.filter((p) => p.type === "Tellurique");
+        break;
+      case "gazeuse":
+        filteredList = planetesData.filter((p) => p.type === "Géante gazeuse");
+        break;
+      case "glace":
+        filteredList = planetesData.filter((p) => p.type === "Géante de glace");
+        break;
+      case "lunes":
+        filteredList = planetesData.filter((p) => p.lunes > 0);
+        break;
+      default:
+        filteredList = planetesData;
+    }
+    renderPlanetes(filteredList);
+  });
+
+  async function chargerDonnees() {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      planetesData = data.planetes;
 
-      data.planetes.forEach((p) => {
-        const article = document.createElement("article");
-        article.classList.add("art");
+      planetesData = data.planetes; // On remplit notre variable globale
 
-        article.innerHTML = `
-          <div class="planet-img">
-            <img src="${p.img}" alt="${p.nom}">
-          </div>
-        `;
-
-        //  CLIC SUR LA PLANÈTE
-        article.addEventListener("click", () => {
-          info.innerHTML = `
-           <button id="close-info" style="position: absolute; top: 10px; right: 15px; background: none; border: none; color: #ff9500; font-size: 30px; cursor: pointer; font-weight: bold;">&times;</button>
-            <h2>${p.nom}</h2>
-            <p><strong>Type :</strong> ${p.type}</p>
-            <p>Diamètre : ${p.diametre_km.toLocaleString("fr-FR")} km</p>
-            <p>Masse : ${p.masse_kg} km</p>
-            <p>Distance Soleil : ${p.distance_au_soleil_km.toLocaleString(
-              "fr-FR"
-            )} km</p>
-            <p>Lune(s) : ${p.lunes}</p>
-          `;
-
-          const closeBtn = document.getElementById("close-info");
-          closeBtn.addEventListener("click", (e) => {
-            if (e.target.id === "close-info") {
-              info.innerHTML = "";
-            }
-          });
-        });
-
-        containerS.appendChild(article);
-      });
+      renderPlanetes(planetesData); // Premier affichage (toutes les planètes)
     } catch (error) {
       console.error("Erreur lors du chargement :", error);
     }
   }
 
-  afficherPlanetes();
+  chargerDonnees();
 }
