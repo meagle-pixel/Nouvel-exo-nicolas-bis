@@ -1,5 +1,5 @@
 // ********** FORMULAIRE **********
-console.log(window.location);
+alert(window.location);
 
 const form = document.querySelector("form");
 
