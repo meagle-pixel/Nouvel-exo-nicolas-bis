@@ -74,6 +74,8 @@ if (form) {
   });
 }
 
+// Mon message d'erreur/succés
+
 function showErrorOrSuccess(msg, type = "error") {
   const formMessage = document.getElementById("form-message");
   const formText = document.getElementById("formText");
@@ -87,6 +89,7 @@ function showErrorOrSuccess(msg, type = "error") {
 
   if (type === "success") {
     formIcon.src = "images/succes.png";
+    formIcon.alt = "logo succés";
   } else {
     formIcon.src = "images/traverser.png";
     formIcon.alt = "logo erreur";
