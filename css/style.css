@@ -474,7 +474,7 @@ nav {
   margin-left: 20px;
 }
 
-.container_contact form h4 {
+.container_contact form h2 {
   color: white;
   font-weight: 300;
   width: 600px;
@@ -633,7 +633,7 @@ body.body-solaire {
 }
 
 #info-planete {
-  position: fixed;
+  position: fixed; 
   bottom: 0;
   left: 0;
   right: 0;
