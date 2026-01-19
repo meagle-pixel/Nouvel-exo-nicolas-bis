@@ -30,6 +30,7 @@ Ce projet est réalisé dans le cadre du **projet fil rouge**, avec pour objecti
 - Utiliser des conditions (`if / else`)
 - Utiliser des boucles (`for`, `forEach`)
 - Charger et exploiter des données au format JSON
+- Utiliser des API
 
 ---
 
