@@ -189,35 +189,51 @@ if (containerS && filtre) {
 // Page "Nos articles" 
 
 
-async function lancerAffichage(){
+async function lancerAffichage() {
   try {
     const reponse = await fetch('./js/data/articles.json');
     const donnees = await reponse.json();
 
-    articlesData = donnees.articles;
-
+    const articlesData = donnees.articles;
     const grille = document.getElementById("grille-articles");
 
     articlesData.forEach(article => {
-      const carteHtml = `
-        <div class="card">
-          <img src="${article.image}" alt="${article.titre}">
-          <div class="card-infos">
-            <small>${article.categorie}</small>
-            <h3>${article.titre}</h3>
-            <p>${article.resume}</p>
-            <a href="details.html?id=${article.id}" class="btn">Lire l'article</a>
-          </div>
-        </div>
-      `;
-      grille.innerHTML += carteHtml;
+      const card = document.createElement("div");
+      card.className = "card";
+
+      const img = document.createElement("img");
+      img.src = article.image;
+      img.alt = article.titre;
+
+      const infos = document.createElement("div");
+      infos.className = "card-infos";
+
+      const small = document.createElement("small");
+      small.textContent = article.categorie;
+
+      const h3 = document.createElement("h3");
+      h3.textContent = article.titre;
+
+      const p = document.createElement("p");
+      p.textContent = article.resume;
+
+      const a = document.createElement("a");
+      a.href = `details.html?id=${article.id}`;
+      a.className = "btn";
+      a.textContent = "Lire l'article";
+
+      infos.append(small, h3, p, a);
+      card.append(img, infos);
+      grille.appendChild(card);
     });
-  } catch (erreur){
+
+  } catch (erreur) {
     console.error("Impossible de charger les articles :", erreur);
   }
 }
 
 lancerAffichage();
+
 
 
 filtre.addEventListener("change", (e) => {
