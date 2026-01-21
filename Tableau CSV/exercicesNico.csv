@@ -39,3 +39,7 @@ comment_parent_id,Référence vers commentaire parent (réponses),Nombre entier,
 comment_status,Statut du commentaire,Texte court,20,Valeur par défaut: pending,approved
 comment_created_at,Date de création du commentaire,Date et heure,,Obligatoire,2025-01-21 18:30:00
 comment_updated_at,Date de dernière modification,Date et heure,,Optionnel,2025-01-21 19:00:00
+form_lastname,Nom dans le formulaire,Texte court,50,Obligatoire,Dupuis
+form_firstname,Prénom dans le formulaire,Texte court,50,Obligatoire,Marie
+form_email,Email dans le formulaire,Texte court,100,Obligatoire,dupuis.marie@gmail.com
+form_tel,Numéro de téléphone,Nombre entier,,Obligatoire,+33 6 55 45 25 80
