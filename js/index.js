@@ -148,26 +148,24 @@ if (containerS && filtre) {
   }
 
   // GESTION DU FILTRE
+  
   filtre.addEventListener("change", (e) => {
-    const valeur = e.target.value;
-
-    const typeMapping = {
-      tellurique: "Tellurique",
-      gazeuse: "Géante gazeuse",
-      glace: "Géante de glace",
-    };
-
-    let filteredList;
-    if (valeur === "all") {
-      filteredList = planetesData;
-    } else if (valeur === "lunes") {
-      filteredList = planetesData.filter((p) => p.lunes > 0);
-    } else {
-      filteredList = planetesData.filter((p) => p.type === typeMapping[valeur]);
-    }
-
-    renderPlanetes(filteredList);
-  });
+  let filteredList;
+  
+  if (e.target.value === "all") {
+    filteredList = planetesData;
+  } else if (e.target.value === "lunes") {
+    filteredList = planetesData.filter(p => p.lunes > 0);
+  } else if (e.target.value === "tellurique") {
+    filteredList = planetesData.filter(p => p.type === "Tellurique");
+  } else if (e.target.value === "gazeuse") {
+    filteredList = planetesData.filter(p => p.type === "Géante gazeuse");
+  } else if (e.target.value === "glace") {
+    filteredList = planetesData.filter(p => p.type === "Géante de glace");
+  }
+  
+  renderPlanetes(filteredList);
+});
 
   async function chargerDonnees() {
     try {
@@ -196,6 +194,7 @@ async function lancerAffichage() {
 
     const articlesData = donnees.articles;
     const grille = document.getElementById("grille-articles");
+    
 
     articlesData.forEach(article => {
       const card = document.createElement("div");
@@ -236,23 +235,3 @@ lancerAffichage();
 
 
 
-filtre.addEventListener("change", (e) => {
-    const valeur = e.target.value;
-
-    const typeMapping = {
-      tellurique: "Tellurique",
-      gazeuse: "Géante gazeuse",
-      glace: "Géante de glace",
-    };
-
-    let filteredList;
-    if (valeur === "all") {
-      filteredList = planetesData;
-    } else if (valeur === "lunes") {
-      filteredList = planetesData.filter((p) => p.lunes > 0);
-    } else {
-      filteredList = planetesData.filter((p) => p.type === typeMapping[valeur]);
-    }
-
-    renderPlanetes(filteredList);
-  });
